@@ -5,16 +5,24 @@ export const MongoClient = {
   db: undefined as unknown as Db,
 
   async connect(): Promise<void> {
-    const url = process.env.MONGODB_URL || "localhost:27017";
-    const username = process.env.MONGODB_USERSNAME;
+    const url = process.env.MONGODB_URL || "mongodb://localhost:27017";
+    const username = process.env.MONGODB_USERNAME;
     const password = process.env.MONGODB_PASSWORD;
 
-    const client = new Mongo(url, { auth: { username, password } });
+    const client = new Mongo(url, {
+      auth: {
+        username,
+        password,
+      },
+    });
+
+    await client.connect();
+
     const db = client.db("users-db");
 
     this.client = client;
     this.db = db;
 
-    console.log("connected to mongodb!");
+    console.log("Connected to MongoDB!");
   },
 };
