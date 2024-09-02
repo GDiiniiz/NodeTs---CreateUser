@@ -6,7 +6,7 @@ import { MongoClient } from "./database/mongo";
 import { MongoCreateUserRepository } from "./repositories/create-user/mongo-create-user";
 import { CreateUserController } from "./controllers/create-user/create-user";
 import { UpdateUserController } from "./controllers/update-user/update-user";
-import { MongoUpdateUserRepository } from "./repositories/update-user/update-user";
+import { MongoUpdateUserRepository } from "./repositories/update-user/mongo-update-user";
 import { MongoDeleteUserRepository } from "./repositories/delete-user/mongo-delete-user";
 import { DeleteUserController } from "./controllers/delete-user/delete-user";
 
