@@ -53,7 +53,7 @@ const main = async () => {
       mongoUpdateUserRepository
     );
 
-    const { body, statusCode } = await updateUserController.hanlde({
+    const { body, statusCode } = await updateUserController.handle({
       body: req.body,
       params: req.params,
     });
