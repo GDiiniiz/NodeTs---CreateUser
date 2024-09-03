@@ -1,8 +1,8 @@
-import { User } from "../../../models/users";
 import validator from "validator";
+import { User } from "../../../models/users";
+import { badRequest, created, serverError } from "../../helpers";
 import { HttpRequest, HttpResponse, IController } from "../../protocols";
 import { CreateUserParams, ICreateUserRepository } from "./protocols";
-import { badResquest, created, serverError } from "../../helpers";
 
 export class CreateUserController implements IController {
   constructor(private readonly createUserRepository: ICreateUserRepository) {}
@@ -14,14 +14,14 @@ export class CreateUserController implements IController {
 
       for (const field of requiredFields) {
         if (!httpRequest?.body?.[field as keyof CreateUserParams]?.length) {
-          return badResquest(`Fiel ${field} is required`);
+          return badRequest(`Fiel ${field} is required`);
         }
       }
 
       const emailIsValid = validator.isEmail(httpRequest.body!.email);
 
       if (!emailIsValid) {
-        return badResquest("E-mail is invalid");
+        return badRequest("E-mail is invalid");
       }
 
       const user = await this.createUserRepository.createUser(

@@ -1,5 +1,5 @@
 import { User } from "../../../models/users";
-import { badResquest, serverError, ok } from "../../helpers";
+import { badRequest, ok, serverError } from "../../helpers";
 import { HttpRequest, HttpResponse, IController } from "../../protocols";
 import { IUpdateUserRepository, UpdateUserParams } from "./protocols";
 
@@ -13,11 +13,11 @@ export class UpdateUserController implements IController {
       const body = httpRequest?.body;
 
       if (!body) {
-        return badResquest("Missing field");
+        return badRequest("Missing field");
       }
 
       if (!id) {
-        return badResquest("Missing user id");
+        return badRequest("Missing user id");
       }
 
       const allowedFieldsToUpdate: (keyof UpdateUserParams)[] = [
@@ -31,7 +31,7 @@ export class UpdateUserController implements IController {
       );
 
       if (someFiledIsNotAllowedUpdate) {
-        return badResquest("Some received field is not allowed");
+        return badRequest("Some received field is not allowed");
       }
 
       const user = await this.updateUserRepository.updateUser(id, body);

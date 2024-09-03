@@ -10,7 +10,7 @@ export const created = <T>(body: any): HttpResponse<T> => ({
   body: body,
 });
 
-export const badResquest = (message: string): HttpResponse<string> => {
+export const badRequest = (message: string): HttpResponse<string> => {
   return {
     statusCode: HttpStatusCode.BAD_RESQUEST,
     body: message,

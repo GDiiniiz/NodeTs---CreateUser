@@ -1,6 +1,5 @@
-import { ok, serverError } from "../../helpers";
 import { User } from "../../../models/users";
-import { badResquest } from "../../helpers";
+import { badRequest, ok, serverError } from "../../helpers";
 import { HttpRequest, HttpResponse, IController } from "../../protocols";
 import { IDeleteUserRepository } from "./protcols";
 
@@ -13,7 +12,7 @@ export class DeleteUserController implements IController {
       const id = httpRequest?.params?.id;
 
       if (!id) {
-        return badResquest("Missing user id");
+        return badRequest("Missing user id");
       }
 
       const user = await this.deleteUserRepositor.deleteUser(id);

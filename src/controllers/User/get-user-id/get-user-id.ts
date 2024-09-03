@@ -1,5 +1,5 @@
 import { User } from "../../../models/users";
-import { badResquest, ok, serverError } from "../../helpers";
+import { badRequest, ok, serverError } from "../../helpers";
 import { HttpRequest, HttpResponse, IController } from "../../protocols";
 import { IGetUserIdRepository } from "./protocols";
 
@@ -12,7 +12,7 @@ export class GetUserIdController implements IController {
       const id = httpRequest.params.id;
 
       if (!id) {
-        return badResquest("Missing user id");
+        return badRequest("Missing user id");
       }
       const user = await this.getUserIdRepository.getUser(id);
       return ok<User>(user);
