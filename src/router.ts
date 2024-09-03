@@ -1,12 +1,14 @@
 // router.ts
 import { Router } from "express";
 import { CreateItemController } from "./controllers/Item/create-item/create-item";
+import { GetItemUserController } from "./controllers/Item/get-item-user/get-item-user";
 import { CreateUserController } from "./controllers/User/create-user/create-user";
 import { DeleteUserController } from "./controllers/User/delete-user/delete-user";
 import { GetUserIdController } from "./controllers/User/get-user-id/get-user-id";
 import { GetUsersController } from "./controllers/User/get-users/get-users";
 import { UpdateUserController } from "./controllers/User/update-user/update-user";
 import { MongoCreateItemRepository } from "./repositories/Item/create-item/mongo-create-item";
+import { MongoGetItemUser } from "./repositories/Item/get-item-user/mongo-get-item-user";
 import { MongoCreateUserRepository } from "./repositories/User/create-user/mongo-create-user";
 import { MongoDeleteUserRepository } from "./repositories/User/delete-user/mongo-delete-user";
 import { MongoUserRepository } from "./repositories/User/find-by-id/mongo-find-by-id";
@@ -85,6 +87,17 @@ router.post("/item/create/:userId", async (req, res) => {
   const {body, statusCode} = await createItemController.handle({
     params: req.params,
     body: req.body
+  })
+  res.status(statusCode).send(body)
+})
+
+router.get("/items/user/:userId", async (req, res) => {
+  const mongoGetItemUser = new MongoGetItemUser();
+
+  const getItemUserController = new GetItemUserController(mongoGetItemUser)
+
+  const {body, statusCode} = await getItemUserController.handle({
+    params: req.params
   })
   res.status(statusCode).send(body)
 })
