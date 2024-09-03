@@ -1,8 +1,8 @@
-import { User } from "../../models/users";
+import { User } from "../../../models/users";
 import validator from "validator";
-import { HttpRequest, HttpResponse, IController } from "../protcols";
+import { HttpRequest, HttpResponse, IController } from "../../protocols";
 import { CreateUserParams, ICreateUserRepository } from "./protocols";
-import { badResquest, created, serverError } from "../helpers";
+import { badResquest, created, serverError } from "../../helpers";
 
 export class CreateUserController implements IController {
   constructor(private readonly createUserRepository: ICreateUserRepository) {}

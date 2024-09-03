@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb";
-import { IDeleteUserRepository } from "../../controllers/delete-user/protcols";
+import { IDeleteUserRepository } from "../../controllers/User/delete-user/protcols";
 import { MongoClient } from "../../database/mongo";
 import { User } from "../../models/users";
 import { MongoUser } from "../mongo-protocols";

@@ -1,4 +1,4 @@
-import { HttpResponse, HttpStatusCode } from "./protcols";
+import { HttpResponse, HttpStatusCode } from "./protocols";
 
 export const ok = <T>(body: any): HttpResponse<T> => ({
   statusCode: HttpStatusCode.OK,
