@@ -1,15 +1,18 @@
 // router.ts
 import { Router } from "express";
-import { MongoGetUsersRepository } from "./repositories/get-users/mongo-get-users";
-import { GetUsersController } from "./controllers/User/get-users/get-users";
 import { MongoCreateUserRepository } from "../src/repositories/create-user/mongo-create-user";
-import { UpdateUserController } from "./controllers/User/update-user/update-user";
-import { MongoUpdateUserRepository } from "./repositories/update-user/mongo-update-user";
 import { MongoDeleteUserRepository } from "../src/repositories/delete-user/mongo-delete-user";
-import { DeleteUserController } from "./controllers/User/delete-user/delete-user";
 import { MongoGetUserIdRepository } from "../src/repositories/get-user-id/mongo-get-user-id";
-import { GetUserIdController } from "./controllers/User/get-user-id/get-user-id";
+import { CreateItemController } from "./controllers/Item/create-item/create-item";
 import { CreateUserController } from "./controllers/User/create-user/create-user";
+import { DeleteUserController } from "./controllers/User/delete-user/delete-user";
+import { GetUserIdController } from "./controllers/User/get-user-id/get-user-id";
+import { GetUsersController } from "./controllers/User/get-users/get-users";
+import { UpdateUserController } from "./controllers/User/update-user/update-user";
+import { MongoGetUsersRepository } from "./repositories/get-users/mongo-get-users";
+import { MongoCreateItemRepository } from "./repositories/Item/create-item/mongo-create-item";
+import { MongoUpdateUserRepository } from "./repositories/update-user/mongo-update-user";
+import { MongoUserRepository } from "./repositories/User/find-by-id/mongo-find-by-id";
 
 const router = Router();
 
@@ -71,5 +74,19 @@ router.delete("/user/delete/:id", async (req, res) => {
 });
 
 //ROUTER ITEM
+router.post("/item/create/:userId", async (req, res) => {
+  const mongoCreateItemRepository = new MongoCreateItemRepository()
+  const mongoUserRepository = new MongoUserRepository();
+
+  const createItemController = new CreateItemController(
+    mongoCreateItemRepository,
+    mongoUserRepository
+  );
+  const {body, statusCode} = await createItemController.handle({
+    params: req.params,
+    body: req.body
+  })
+  res.status(statusCode).send(body)
+})
 
 export default router;
