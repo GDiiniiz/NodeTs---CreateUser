@@ -1,18 +1,18 @@
 // router.ts
 import { Router } from "express";
-import { MongoCreateUserRepository } from "../src/repositories/create-user/mongo-create-user";
-import { MongoDeleteUserRepository } from "../src/repositories/delete-user/mongo-delete-user";
-import { MongoGetUserIdRepository } from "../src/repositories/get-user-id/mongo-get-user-id";
 import { CreateItemController } from "./controllers/Item/create-item/create-item";
 import { CreateUserController } from "./controllers/User/create-user/create-user";
 import { DeleteUserController } from "./controllers/User/delete-user/delete-user";
 import { GetUserIdController } from "./controllers/User/get-user-id/get-user-id";
 import { GetUsersController } from "./controllers/User/get-users/get-users";
 import { UpdateUserController } from "./controllers/User/update-user/update-user";
-import { MongoGetUsersRepository } from "./repositories/get-users/mongo-get-users";
 import { MongoCreateItemRepository } from "./repositories/Item/create-item/mongo-create-item";
-import { MongoUpdateUserRepository } from "./repositories/update-user/mongo-update-user";
+import { MongoCreateUserRepository } from "./repositories/User/create-user/mongo-create-user";
+import { MongoDeleteUserRepository } from "./repositories/User/delete-user/mongo-delete-user";
 import { MongoUserRepository } from "./repositories/User/find-by-id/mongo-find-by-id";
+import { MongoGetUserIdRepository } from "./repositories/User/get-user-id/mongo-get-user-id";
+import { MongoGetUsersRepository } from "./repositories/User/get-users/mongo-get-users";
+import { MongoUpdateUserRepository } from "./repositories/User/update-user/mongo-update-user";
 
 const router = Router();
 
